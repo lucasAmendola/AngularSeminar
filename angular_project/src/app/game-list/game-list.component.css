@@ -1,0 +1,12 @@
+.poster{
+    max-width: 150px;
+}
+
+.offer{
+    color:  green;
+    border: 2px solid rgb(153, 255, 0);
+}
+
+.offer td{
+    color: green;
+}

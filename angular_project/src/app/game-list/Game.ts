@@ -5,4 +5,5 @@ export interface Game {
     price : number;
     stock : number;
     offer : boolean;
+    quantity: number;
 }

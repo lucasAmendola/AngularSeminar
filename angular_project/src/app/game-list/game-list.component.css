@@ -5,8 +5,14 @@
 .offer{
     color:  green;
     border: 2px solid rgb(153, 255, 0);
+    background: lightgreen;
 }
 
 .offer td{
     color: green;
 }
+
+td{
+    vertical-align: middle;
+}
+

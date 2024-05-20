@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table text-center">
     <thead>
         <tr>
             <th>Tapa</th>
@@ -6,17 +6,23 @@
             <th>Genero</th>
             <th>Precio</th>
             <th>Stock</th>
+            <th>Unidades</th>
         </tr>
     </thead>
     <tbody>
         @for (item of items; track item.name){
             <tr [class]="{'offer': item.offer}">
-                <td><img class="poster" [src]="item.image" alt="item.name"></td>
+                <td><img class="img-thumbnail poster" [src]="item.image" alt="item.name"></td>
                 <td>{{ item.name }}</td>
                 <td>{{ item.genre }}</td>
-                <td>{{ item.price }}</td>
+                <td>{{ item.price | currency}}</td>
                 @if (item.stock > 0) {
                     <td>{{ item.stock }}</td>
+                    <td><button class="btn btn-primary btn-sm" (click)="downQuantity(item)">-</button> 
+                        <input type="text" 
+                        [(ngModel)]="item.quantity"
+                        (keyup)="changeQuatity($event, item)">
+                        <button class="btn btn-primary btn-sm" (click)="upQuantity(item)">+</button></td>
                 }
                 @else{
                     <td>SIN STOCK</td>

@@ -1,37 +1,69 @@
-<table class="table text-center">
-    <thead>
-        <tr>
-            <th>Tapa</th>
-            <th>Nombre</th>
-            <th>Genero</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Unidades</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (item of items; track item.name){
-            <tr [class]="{'offer': item.offer}">
-                <td><img class="img-thumbnail poster" [src]="item.image" alt="item.name"></td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.genre }}</td>
-                <td>{{ item.price | currency}}</td>
-                @if (item.stock > 0) {
-                    <td>{{ item.stock }}</td>
-                    <td><button class="btn btn-primary btn-sm" (click)="downQuantity(item)">-</button> 
-                        <input type="text" 
-                        [(ngModel)]="item.quantity"
-                        (keyup)="changeQuatity($event, item)">
-                        <button class="btn btn-primary btn-sm" (click)="upQuantity(item)">+</button></td>
-                }
-                @else{
-                    <td>SIN STOCK</td>
-                }
-            </tr>
-        } @empty {
+<div class="listContent">
+    <h1>Top en ventas</h1>
+    <table class="table text-center">
+        <thead>
             <tr>
-                <td colspan="4">Sin juegos momentaneamente.</td>
+                <th></th>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Jugability</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @for (item of items; track item.name){
+                <tr [class]="{'offer': item.offer}">
+                    <td><img class="img-thumbnail poster" [src]="item.image" alt="item.name"></td>
+                    <td style="width: 35%;">
+                        <h4>{{ item.name }}</h4>
+                        <p style="text-align: justify; font-size: small;">{{item.description}}</p>
+                    </td>
+                    <td><h5>{{ item.genre }}</h5></td>
+                    @if(item.offer){
+                        <td><h5>Before: {{ item.price | currency}}</h5>  <h3 style="
+                                                                             font-weight: bold;
+                                                                             color: rgb(210, 158, 0);">Now: {{ item.price/3 | currency}}</h3></td>
+                    }
+                    @else{
+                        <td style="font-weight: bold;"><h5>{{ item.price | currency}}</h5></td>
+                    }
+                    @if (item.stock > 0) {
+                        <td> 
+                            <div class="input-group" style="margin-left: 15%;">
+                            <button  style="width: 30px;" class="input-group btn btn-primary btn-sm" (click)="downQuantity(item)">-</button> 
+                                <input class="input-group"
+                                    type="text" 
+                                    [(ngModel)]="item.quantity"
+                                    (keyup)="changeQuatity($event, item)"
+                                    style="width: 30px;
+                                    text-align: center;">
+                                <button  style="width: 30px;" class="input-group btn btn-primary btn-sm" (click)="upQuantity(item)">+</button> 
+                            </div>
+                            @if (item.quantity > 0) {
+                                <div class="input-group">
+                                    <button class="comprarButton input-group btn btn-primary btn-sm"
+                                            (click)="addToCarrito(item)">
+                                        Buy
+                                    </button>   
+                                </div>
+
+                            }
+                            
+                        </td>
+                    }
+                    <td style="font-weight: bolder;"><img style="max-width: 35px;" [src]="item.jugability" alt="item.name">
+                        @if(item.jugability2 != ''){
+                            <h6>-</h6>
+                            <img style="max-width: 35px;" [src]="item.jugability2" alt="item.name">
+                        }
+                    </td>
+                </tr>
+            } @empty {
+                <tr>
+                    <td colspan="4">Sin juegos momentaneamente.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

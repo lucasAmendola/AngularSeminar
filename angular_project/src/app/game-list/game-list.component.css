@@ -1,18 +1,69 @@
 .poster{
     max-width: 150px;
 }
+.poster:hover{
+    transform: scale(1.05);
+    transition: all 0.5s ease;
+    cursor:cell;
+}
 
 .offer{
-    color:  green;
-    border: 2px solid rgb(153, 255, 0);
-    background: lightgreen;
+    --bs-table-bg: #00864e; 
+    background: rgb(0, 109, 0);
 }
 
 .offer td{
-    color: green;
+    color: rgb(255, 255, 255);
 }
 
 td{
     vertical-align: middle;
 }
 
+table{
+    --bs-table-bg: #000e18; 
+    --bs-table-color-type: #ededed;
+    margin-bottom: 0;
+    width: 150%;
+    border-color: var(--bs-table-border-color);
+    border-spacing: 0px;
+}
+
+.noStock{
+    background-color: yellow;
+    color: black;
+    font-weight: bolder;
+    border-radius: 10%;
+    border: solid 2px black;
+}
+
+.listContent{
+    margin: 0%;
+}
+
+.comprarButton{
+    background-color: #007f15;
+    border: solid 1px white;
+    font-weight: bold;
+    width: 90px;
+    margin-top: 5%;
+    margin-left: 15%;
+}
+
+.comprarButton:hover{
+    transform: scale(1.1);
+    transition: all 0.5s ease;
+    color: rgb(0, 0, 0);/* color de fuente hover */
+    text-decoration: none;
+    background: #d6a700
+}
+
+.comprarButton:hover::after {
+    transition: all 0.3s ease-out;
+    transform: skewX(-45deg) scale(1, 1);
+}
+h1{
+    color: white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 3%;
+}
